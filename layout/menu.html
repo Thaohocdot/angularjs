@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#ia">FPT Polytechnic</a>
+      <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                  <a class="nav-link" href="#JpIndex">Giới thiệu <span class="visually-hidden">(current)</span></a>
+              </li>
+              <!-- <li class="nav-item">
+                  <a class="nav-link" href="#contact">Liên hệ</a>
+              </li> -->
+              <li class="nav-item">
+                  <a class="nav-link" href="#Lesson">Môn học</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#LessonMockAPI">Môn học (API)</a>
+              </li>
+              
+              <li class="nav-item">
+                  <a class="nav-link" href="#Feedback">Góp ý</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#Question">Hỏi đáp</a>
+              </li>
+                <!-- <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Giới thiệu <span class="visually-hidden">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lesson.html">Môn học</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="Feedback.html">Góp ý</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Question.html">Hỏi đáp</a>
+                </li> -->
+          </ul>
+          <span class="navbar-text p-0 dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
+                  <i class="fa fa-user-circle"></i> 
+                  <span ng-if="usernameLogin == ''">tài khoản</span>
+                  <span ng-if="usernameLogin != ''">{{usernameLogin}}</span> 
+              </a>
+              <div class="dropdown-menu text-dark">
+                  <a class="dropdown-item text-dark" href="registration.html" ng-if="hideChoice">Đăng ký</a>
+                  <a class="dropdown-item text-dark" href="Login.html" ng-if="hideChoice">Đăng nhập</a>
+                  <a class="dropdown-item text-dark" href="ResetPassword.html" ng-if="hideChoice">Quên mật khẩu</a>
+                  <hr class="dropdown-divider" ng-if="hideChoice">
+                  <a class="dropdown-item text-dark" href="ChangePassword.html" ng-if="!hideChoice">Đổi mật khẩu</a>
+                  <a class="dropdown-item text-dark" href="#ListAccount" ng-if="accLoginAccess.access === 'true'">Quản trị tài khoản</a>
+                  <a class="dropdown-item text-dark" href="#ListQuestion" ng-if="accLoginAccess.access === 'true'">Quản trị câu hỏi</a>
+                  <a class="dropdown-item text-dark" href="#UserTested" ng-if="!hideChoice">Bài đã học</a>
+                  <a class="dropdown-item text-dark" href="#UpdateUser" ng-if="!hideChoice">Cập nhập tài khoản</a>
+                  <a class="dropdown-item text-dark" href="Login.html" ng-click="logOut()" ng-if="!hideChoice">Đăng xuất</a>
+              </div>
+          </span>
+      </div>
+</div>
+</nav>

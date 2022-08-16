@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        <a href="#contentId" style="text-decoration: none; color: white;"><i class="fa fa-list" ></i> <b>Danh mục</b></a>
+    </div>
+</div>
+<div class="list-group">
+    <div ng-repeat="x in subjects">
+        <a href="#testAPI/{{x.id}}" class="list-group-item list-group-item-action ">{{x.Name}}</a>
+    </div>
+</div>

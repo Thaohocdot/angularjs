@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href="css/loadingPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha512-g06pohSHYbSOHKq8tdDGXckE6C23Yt30xlTFDhrO0OcO/bNO2MWXb63oqU/Y23GDMNOon100eGHxZPBnT4QgMw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body ng-app="myApp" class="update-user">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="work_js/registration.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
+    <div class="container" ng-controller="ctrl_checkIn">
+        <div ng-show="isLoading" class="loading">
+            <div class="spinner-border text-primary spinner-center" role="status">
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
+            <div class="col-12 col-md-5 col-lg-4 h-50">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h4 class="mt-4">Create Account</h4>
+                        
+                        <h4 class="text-muted">DETAIL</h4>
+                        <form name="fr" action="" method="post" ng-submit="onSubmitForm($event)"> 
+                            <div class="form-group mt-2 text-start">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    <input type="text" placeholder="Full Name" class="form-control" name="fullname" ng-model="accountCreate.fullname" required> 
+                                </div>
+                                <div ng-show="fr.fullname.$touched &&  fr.fullname.$invalid">
+                                    <span class="check"><i class="fa fa-star-of-life"></i> Bạn chưa nhập tên</span>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2 text-start">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    <input type="date" placeholder="yyyy-MM-dd" class="form-control" name="birthday" ng-model="accountCreate.birthday" firebase-date required> 
+                                </div>
+                                <div  ng-show="fr.birthday.$touched &&  fr.birthday.$invalid">
+                                    <span class="check"><i class="fa fa-star-of-life"></i> Bạn chưa nhập ngày sinh</span>
+                                </div>
+                            </div> 
+                            <div class="form-group mt-2">
+                                <label for="" class="float-start">Giới tính</label>
+                                <div class="form-check form-check-inline">
+                                  <input type="radio" class="form-check-input" name="gender" id="" value="true" checked ng-model="accountCreate.gender">
+                                  <label class="form-check-label" for="" >
+                                    Nam
+                                  </label>
+                                </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" name="gender" id="" value="false"  ng-model="accountCreate.gender">
+                                        <label class="form-check-label" for="">
+                                        Nữ
+                                        </label>
+                                </div>
+                            </div> 
+                            <div class="form-group mt-2 text-start">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-user-tie"></i></span>
+                                    <input type="text" placeholder="Username" class="form-control" name="username" ng-model="accountCreate.username" required> 
+                                </div>
+                                <div ng-show="fr.username.$touched && fr.username.$invalid">
+                                    <span class="check"><i class="fa fa-star-of-life"></i> Bạn chưa nhập tài khoản</span>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2 text-start">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                    <input type="password" placeholder="Password" class="form-control" name="password" ng-model="accountCreate.password" required > 
+                                </div>
+                                <div ng-show="fr.password.$touched && fr.password.$invalid">
+                                    <span class="check" ng-show="fr.password.$error.required"><i class="fa fa-star-of-life"></i> Bạn chưa nhập mật khẩu</span>
+                                    <!-- <span class="check" ng-show="fr.password.$error.minlength"><i class="fa fa-star-of-life"></i> Mật khẩu ngắn quá</span> -->
+                                </div>
+                            </div>
+                            <div class="from-group mt-2 text-start">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                    <input type="password" placeholder="Confirm Password" class="form-control" name="confirmpassword" ng-model="confirmPassword" required>
+                                </div>
+                                <span class="check" ng-show="fr.confirmpassword.$touched && fr.confirmpassword.$invalid"><i class="fa fa-star-of-life"></i> Bạn chưa xác nhận mật khẩu</span>
+                            </div>
+                            <div class="form-group mt-2 text-start">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-envelope"></i></i></span>
+                                    <input type="email" placeholder="Your Email" class="form-control" name="email" ng-model="accountCreate.email" required> 
+                                </div>
+                                <div ng-show="fr.email.$touched && fr.email.$invalid">
+                                    <span class="check" ng-show="fr.email.$error.email"><i class="fa fa-star-of-life"></i> Email không đúng định dạng</span>
+                                    <span class="check" ng-show="fr.email.$error.required"><i class="fa fa-star-of-life"></i> Bạn chưa nhập email</span>
+                                </div>
+                            </div>
+                            <div class="row ps-2 pe-2">
+                                <button class="btn btn-primary mt-3 ps-0 pe-0" ng-click="createAccount()">Create Account</button>
+                            </div>
+                        </form>
+                        <p class="mt-4">
+                            Have an account? <a href="Login.html">Log In</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script>
+        var app = angular.module("myApp", []);
+        app.controller("ctrl", function($scope){});
+    </script> -->
+</body>
+</html>

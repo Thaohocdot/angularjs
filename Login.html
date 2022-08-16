@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha512-g06pohSHYbSOHKq8tdDGXckE6C23Yt30xlTFDhrO0OcO/bNO2MWXb63oqU/Y23GDMNOon100eGHxZPBnT4QgMw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body ng-app="myApp" class="update-user">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="work_js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
+    <div class="container" ng-controller="ctrl">
+        <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
+            <div class="col-12 col-md-6 col-lg-4 h-50">
+                <!-- <table class="table">
+                    <tr ng-repeat = "x in aa">
+                        <td>{{x.username}}</td>
+                    </tr>
+                </table> -->
+                <div class="card mt-4">
+                    <div class="card-header p-0">
+                        <img src="images/istockphoto-1302070873-612x612.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="card-body p-4">
+                        <h4 class="mt-2 mb-2">WELCOME {{account.username}}</h4>
+                        <p class="mb-4">Sign in by entering the information below</p>
+                        <form action="" name="fr"> 
+                            <div class="form-group mt-2 text-start">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    <input type="text" placeholder="Your Username" class="form-control" name="username" ng-model="usernameLogin" required> 
+                                </div>
+                                <span class="check" ng-show="fr.username.$touched && fr.username.$invalid"><i class="fa fa-star-of-life"></i> Bạn chưa nhập tài khoản</span>
+                            </div>
+                            <div class="form-group mt-3 text-start">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                    <input type="password" placeholder="Password" class="form-control" ng-model="passwordLogin" name="password" required> 
+                                </div>
+                                <span  class="check" ng-show="fr.password.$touched && fr.password.$invalid"><i class="fa fa-star-of-life"></i> Bạn chưa nhập mật khẩu</span>
+                            </div>
+                            <div class="row ps-2 pe-2">
+                                    <!-- <a href="{{home}}" ng-click="a()">Get start</a> -->
+                                    <a href="{{home}}" class="btn btn-primary mt-3 ps-0 pe-0"  ng-click="loginAccount()">Get start</a>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm-6  col-6 text-start">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" ng-model="rememberPassword">
+                                        <label class="form-check-label" for="">
+                                          Remember me?
+                                        </label>
+                                      </div>
+                                </div>
+                                <div class="col-sm-6 col-6 text-end">
+                                <a href="ResetPassword.html">Forgot Password</a>
+                            </div>
+                            </div>
+                            
+                        </form>
+                        
+                        <p class="mt-2">
+                            Don't have an account? <br><a href="registration.html">SIGN UP</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script>
+        var app = angular.module("myApp",[]);
+        app.controller("ctrl", function($scope){
+            
+        });
+    </script> -->
+</body>
+</html>

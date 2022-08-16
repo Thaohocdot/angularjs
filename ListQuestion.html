@@ -1,0 +1,46 @@
+<div ng-controller="ctrl_listQuestion" class="container">
+    <div ng-show="isLoading" class="loading">
+        <div class="spinner-border text-primary spinner-center" role="status">
+        </div>
+    </div>
+    <div class="" style="margin-top: 60px;">
+        <h2 class="mt-2">Quản trị câu hỏi</h2>
+        <div class="row d-flex justify-content-center">
+            <div class="col-10">
+                <form name="fr">
+                    <div class="form-group">
+                        <label for="">Mã môn</label>
+                        <input type="text" class="form-control" ng-model="subject.IdSubject" name="IdSubject">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tên Môn</label>
+                        <input type="text" class="form-control" ng-model="subject.Name" name="name">
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="">Mã môn</label>
+                        <input type="text" class="form-control" ng-model="subject" name="IdSubject">
+                    </div>  --> <br>
+                    <button class="btn btn-dark pe-4 ps-4" ng-click="saveSubject()">Lưu</button>
+                </form>
+            </div>
+            <table class="table mt-4">
+                <tbody>
+                    <tr>
+                        <th>Mã Môn</th>
+                        <th>Tên Môn</th>
+                        <th>Logo</th>
+                        <th colspan="3"></th>
+                    </tr>
+                </tbody>
+                <tr ng-repeat="x in listSubject">
+                    <td>{{x.IdSubject}}</td>
+                    <td>{{x.Name}}</td>
+                    <td>{{x.Logo}}</td>
+                    <td><button class="btn btn-primary" ng-click="update($index)">Sửa</button></td>
+                    <td><a href="#listQuiz" class="btn btn-primary" ng-click="goToQuiz($index)">Thêm câu hỏi</a></td>
+                    <td><button class="btn btn-danger" ng-click="delete($index)">Xóa</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

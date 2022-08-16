@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha512-g06pohSHYbSOHKq8tdDGXckE6C23Yt30xlTFDhrO0OcO/bNO2MWXb63oqU/Y23GDMNOon100eGHxZPBnT4QgMw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+</head>
+<body ng-app="myApp">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="work_js/exam.js"></script>
+
+    <div class="container" ng-controller="ctrl_ExamAPI">
+        
+        <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <div class="container">
+              <a class="navbar-brand" href="#ia">FPT Polytechnic</a>
+              <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                  aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="collapsibleNavId">
+                  <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                      <li class="nav-item active">
+                          <a class="nav-link" href="index.html">Trang chủ<span class="visually-hidden">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Lesson.html">Môn học</a>
+                      </li>
+                      
+                      <li class="nav-item">
+                          <a class="nav-link" href="Feedback.html">Góp ý</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Question.html">Hỏi đáp</a>
+                      </li>
+                  </ul>
+                  <span class="navbar-text p-0 dropdown">
+                      <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                          <i class="fa fa-user-circle"></i> Vũ Văn Lanh
+                      </a>
+                      <div class="dropdown-menu text-dark">
+                          <a class="dropdown-item text-dark" href="registration.html">Đăng ký</a>
+                          <a class="dropdown-item text-dark" href="Login.html">Đăng nhập</a>
+                          <a class="dropdown-item text-dark" href="ResetPassword.html">Quên mật khẩu</a>
+                          <hr class="dropdown-divider">
+                          <a class="dropdown-item text-dark" href="#">Đăng xuất</a>
+                          <a class="dropdown-item text-dark "href="ChangePassword.html">Đổi mật khẩu</a>
+                          <a class="dropdown-item text-dark" href="UpdateUser.html">Cập nhập tài khoản</a>
+                      </div>
+                  </span>
+              </div>
+        </div>
+        </nav> -->
+        <!-- <nav ng-include="'./layout/menu.html'"></nav> -->
+        <div ng-show="isLoading" class="loading">
+            <div class="spinner-border text-primary spinner-center" role="status">
+            </div>
+        </div>
+        <article class="mt-4 row" >
+            
+            <p class="mt-5 text-center">
+                <i class="fa fa-clock"  style="font-size: 24px;"></i> <b style="font-size: 24px;">{{m}}:{{s}} </b>
+            </p>
+            <div class="col">
+                <div class="card p-0" ng-repeat="x in quiz | limitTo : 1 : indexQuiz">
+                    <div class="card-header bg-white">
+                        <h6>Câu {{indexQuiz}}: {{x.Text}}</h6>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" ng-model="x.a" name="a" id="" value="{{x.Answers[0].Id}}" >
+                                <label class="form-check-label" for="">
+                                  A. {{x.Answers[0].Text}} <!-- {{x.a}} --> <!-- {{po}} {{indexQuiz}} -->
+                                </label>
+                            </div>
+                              <div class="form-check">
+                                  <input type="radio" class="form-check-input" ng-model="x.a" name="a" value="{{x.Answers[1].Id}}"  >
+                                <label class="form-check-label" for="">
+                                  B. {{x.Answers[1].Text}}
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                  <input type="radio" class="form-check-input" ng-model="x.a" name="a" value="{{x.Answers[2].Id}}">
+                                <label class="form-check-label" for="">
+                                  C. {{x.Answers[2].Text}}
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                  <input type="radio" class="form-check-input" ng-model="x.a" name="a" value="{{x.Answers[3].Id}}">
+                                <label class="form-check-label" for="">
+                                  D. {{x.Answers[3].Text}}
+                                </label> 
+                              </div>
+                                <span ng-show="x.choice1" style="color: green; font-weight: bold;">Correct</span>
+                                <span ng-show="x.choice2" style="color:red; font-weight: bold;">Un-Correct</span>
+                              <br> <br>
+                           
+                                <div class="float-start">
+                                    <button class="btn btn-outline-danger ms-3 float-end" style=" width: 100px; border-radius: 50px;" ng-click="submit()" id="anwser" ng-disable="hideBtn">Answer</button>
+                                      
+                                </div>
+                                <div class=" d-flex justify-content-center pe-0">
+                                    <button class="btn btn-outline-success" style=" width: 100px; border-radius: 50px;" ng-click="start()">Start</button>
+                                    <button class="btn btn-outline-success ms-3" style=" width: 100px; border-radius: 50px;" ng-click="prev()">Prev</button>
+                                    <button class="btn btn-outline-success ms-3" style=" width: 100px; border-radius: 50px;" ng-click="next()">Next</button>
+                                    <button class="btn btn-outline-success ms-3" style=" width: 100px; border-radius: 50px;" ng-click="last()">Last</button>
+                                    
+                                </div>
+                                
+                                <div class="float-start" ng-if="finishTest()"><br>
+                                    <button class="btn btn-dark ms-3" style=" width: 100px; border-radius: 50px;" ng-click="endTest()" id="" >Submit</button>
+                                </div>
+                          
+                        </form>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <span class="badge bg-danger float-start">điểm: {{markQuiz}}/{{totalQuiz+1}}</span>
+                        <span class="badge bg-success float-end">câu hỏi: {{indexQuiz}}/{{totalQuiz+1}}</span>
+                    </div>
+                </div>
+            </div>
+        </article> 
+        <!-- <form>
+            <div class="form-group">
+                <input type="radio" ng-model="okla" value="1">
+                <input type="radio" ng-model="okla" value="2">
+                <input type="radio" ng-model="okla" value="3">
+                <input type="radio" ng-model="okla" value="4">
+                <button class="bnt btn-primary" ng-click="ok()">ok</button>
+            </div>
+        </form>
+        {{qo}} -->
+        <!-- <ul>
+            <li ng-repeat="x in okk">{{x}}</li>
+        </ul> -->
+    </div>
+</body>
+</html>

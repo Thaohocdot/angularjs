@@ -1,0 +1,27 @@
+.lessonCss-cardBody{
+    background-color: black;
+    opacity: 0.8;   
+}
+a{
+    text-decoration:  none;
+    color: white;
+}
+
+.transi>a:hover{
+    color: green;
+}
+
+.lessonCss-card{
+    transition: all 0.5s;
+}
+
+.lessonCss-card:hover{
+    transform: translate(0,-3px);
+    box-shadow: 0px 7px 2px black;
+}
+
+h6.lessonCss-cardTitle{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

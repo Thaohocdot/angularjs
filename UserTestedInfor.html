@@ -1,0 +1,17 @@
+<div ng-controller="ctrl_tested" class="container">
+    <div class="" style="margin-top: 60px;">
+        <h2 class="mt-2">Lịch sử bài đã học</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Bài</th>
+                <th>Điểm</th>
+                <th>Tên</th>
+            </tr>
+            <tr ng-repeat="x in userTested">
+                <td>{{x.lesson}}</td>
+                <td>{{x.marks}}</td>
+                <td>{{accountLoginInformation.username}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

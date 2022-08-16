@@ -1,0 +1,135 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/ass.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha512-g06pohSHYbSOHKq8tdDGXckE6C23Yt30xlTFDhrO0OcO/bNO2MWXb63oqU/Y23GDMNOon100eGHxZPBnT4QgMw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" class="pt-100">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+ -->
+    <div class="container" style="padding-top: 56px;" ng-controller="ctrl_setQuestion">
+        <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+              <div class="container">
+                <a class="navbar-brand" href="#ia">FPT Polytechnic</a>
+                <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Trang chủ<span class="visually-hidden">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Lesson.html">Môn học</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="Feedback.html">Góp ý</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Question.html">Hỏi đáp</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text p-0 dropdown">
+                        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i> Vũ Văn Lanh
+                        </a>
+                        <div class="dropdown-menu text-dark">
+                            <a class="dropdown-item text-dark" href="registration.html">Đăng ký</a>
+                            <a class="dropdown-item text-dark" href="Login.html">Đăng nhập</a>
+                            <a class="dropdown-item text-dark" href="ResetPassword.html">Quên mật khẩu</a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item text-dark" href="#">Đăng xuất</a>
+                            <a class="dropdown-item text-dark "href="ChangePassword.html">Đổi mật khẩu</a>
+                            <a class="dropdown-item text-dark" href="UpdateUser.html">Cập nhập tài khoản</a>
+                        </div>
+                    </span>
+                </div>
+          </div>
+        </nav> -->
+        
+        <article class="mt-4">
+            <div class="row d-flex justify-content-center text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Abcxyz.jpg" class="img-fluid col-4 mb-4 mt-3" alt="">
+                <p class="">
+                    <h2>Đặt câu hỏi</h2>
+                </p>
+                <div class="col-md-7">
+                    <form class="text-start" name="fr">
+                        <div class="row mb-3">
+                            <div class="col-md-3"><h6>Your Telephone</h6></div>
+                            <div class="col-md-9">
+                                <input type="tel" class="form-control" required ng-model="phone" name="phone">
+                            </div>
+                            <div ng-show="fr.name.$touched && fr.name.$invalid">
+                                <span ng-show="fr.name.$error.required">Nhập sai định dạng điện thoại</span>
+                                <span ng-show="fr.name.$error.tel">Nhập sai định dạng điện thoại</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3"><h6>Your Email</h6></div>
+                            <div class="col-md-9">
+                                <input type="email" class="form-control" required ng-model="email" name="email">
+                            </div>
+                            <span ng-show="fr.email.$touched && fr.email.$invalid" class="text-danger text-end">
+                                <span ng-show="fr.email.$error.required">Bạn chưa nhập email</span>
+                                <span ng-show="fr.email.$error.email">Nhập sai định dạng email</span>
+                            </span>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3"><h6>Your Fullname</h6></div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" required ng-model="fullname" name="fullname">
+                            </div>
+                            <span ng-show="fr.fullname.$touched && fr.fullname.$invalid" class="text-danger text-end">
+                                <span ng-show="fr.fullname.$error.required">Bạn chưa nhập tên</span>
+                            </span>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3"><h6>Câu hỏi</h6></div>
+                            <div class="col-md-9">
+                                <textarea name="feedBack" id="" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                            <span ng-show="fr.feedBack.$touched && fr.feedBack.$invalid" class="text-danger text-end">
+                                <span ng-show="fr.feedBack.$error.required">Bạn chưa nhập tên</span>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-outline-success" ng-click="send()"><h6>Send</h6></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </article>
+    </div>
+    <footer class="bg-dark p-0 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3 text-white text-center">
+                    <p>
+                        <h3>
+                            FPT Polytechnic
+                        </h3>
+                        Designed <b class="text-success"></b>
+                    </p>
+                </div>
+                <div class="col-12 col-md-4 offset-md-4 offset-lg-5 pt-3  d-flex justify-content-center ps-0">
+                    <ul style="list-style-type: none;" class="text-white ul-footer">
+                        <li><button class="btn btn-success"><i class="fab fa-twitter"></i></button></li>
+                        <li><button class="btn btn-success"><i class="fab fa-facebook-f"></i></button></i></li>
+                        <li><button class="btn btn-success"><i class="fab fa-instagram"></i></button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    

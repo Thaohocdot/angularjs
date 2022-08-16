@@ -1,0 +1,18 @@
+a{
+    text-decoration: none;
+}
+
+.update-user{
+    background-image: url("https://i.pinimg.com/originals/d4/03/97/d403972dbc84d94b9865f9a1670bd7bc.jpg");
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+span.check{
+    font-size: 12px;
+    color: red;
+}
+
+.fa-star-of-life{
+    font-size: 8px;
+}

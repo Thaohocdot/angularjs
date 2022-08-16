@@ -1,0 +1,127 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha512-g06pohSHYbSOHKq8tdDGXckE6C23Yt30xlTFDhrO0OcO/bNO2MWXb63oqU/Y23GDMNOon100eGHxZPBnT4QgMw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body ng-app="myApp">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="work_js/index.js"></script> -->
+
+    <div class="container-fluid" ng-controller="ctrl_updateProfile">
+        <div ng-show="isLoading" class="loading">
+            <div class="spinner-border text-primary spinner-center" role="status">
+            </div>
+        </div>
+        <div class="row justify-content-center  d-flex-row  h-100">
+            <div class="col-12 col-md-10 col-lg-8 h-50">
+                <div class="card mt-5">
+                    <div class="card-header bg-success">
+                        <h4 class="text-white">User Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <form name="fr"> 
+                            <div class="row mb-4">
+                                <div class="col-md-3"><h5>Fullname: </h5></div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="fullname" ng-model="account.fullname" required>
+                                    <span class="check" ng-show="fr.fullname.$touched && fr.fullname.$invalid"><i class="fa fa-star-of-life"></i> Bạn chưa nhập họ và tên</span>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-3"><h5>Username: </h5></div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="username" ng-model="account.username" required disabled>
+                                    <span class="check" ng-show="fr.username.$touched && fr.username.$invalid"><i class="fa fa-star-of-life"></i> Bạn chưa nhập tài khoản</span>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-3"><h5>Password: </h5></div>
+                                <div class="col-md-9">
+                                    <input type="password" class="form-control" name="password" ng-model="account.password" required disabled> 
+                                    <span class="check" ng-show="fr.password.$touched && fr.password.$invalid"><i class="fa fa-star-of-life"></i> Bạn chưa nhập mật khẩu</span>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-3"><h5>Email: </h5></div>
+                                <div class="col-md-9">
+                                    <input type="email" class="form-control" name="email" ng-model="account.email" required>
+                                    <div ng-show="fr.email.$touched && fr.email.$invalid">
+                                        <span class="check" ng-show="fr.email.$error.email"><i class="fa fa-star-of-life"></i> Email không đúng định dạng</span>
+                                        <span class="check" ng-show="fr.email.$error.required"><i class="fa fa-star-of-life"></i> Bạn chưa nhập email</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-3"><h5>Gender: </h5></div>
+                                <div class="col-md-9">
+                                    <div class="form-check form-check-inline">
+                                      <input type="radio" class="form-check-input" name="gender" id="" value="true" checked ng-model="account.gender">
+                                      <label class="form-check-label" for="">
+                                       Nam
+                                      </label>
+                                    </div>
+                                    <div class="form-check  form-check-inline">
+                                        <input type="radio" class="form-check-input" name="gender" id="gedner" value="false" ng-model="account.gender">
+                                        <label class="form-check-label" for="">
+                                         Nữ
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-3"><h5>Birthday: </h5></div>
+                                <div class="col-md-9">
+                                    <input type="date" class="form-control" firebase-date name="date" ng-model="account.birthday">
+                                    <span class="check" ng-show="fr.date.$invalid"><i class="fa fa-star-of-life"></i> Bạn chưa nhập ngày sinh</span>
+                                    <!-- <h2>{{account.birthday}}</h2>
+                                    <h2>{{day}}</h2> -->
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-3"><h5>School fee: </h5></div>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" name="fee" ng-model="account.schoolfee" required min="0">
+                                    <!-- <span class="check" ng-show="fr.fee.$invalid"><i class="fa fa-star-of-life"></i> Bạn chưa học phí</span> -->
+                                    <div ng-show="fr.fee.$touched && fr.fee.$invalid">
+                                        <span class="check" ng-show="fr.fee.$error.number"><i class="fa fa-star-of-life"></i> Học phí không phải là số</span>
+                                        <span class="check" ng-show="fr.fee.$error.required"><i class="fa fa-star-of-life"></i> Bạn chưa học phí</span>
+                                        <span class="check" ng-show="fr.fee.$error.min"><i class="fa fa-star-of-life"></i> Học phí không nhập dưới 0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-3"><h5>marks: </h5></div>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" name="mark" ng-model="account.marks" required min="0" max="10">
+                                    <!-- <span class="check" ng-show="fr.mark.$invalid"><i class="fa fa-star-of-life"></i> Hãy nhập số</span> -->
+                                    <div ng-show="fr.mark.$touched && fr.mark.$invalid">
+                                        <span class="mark" ng-show="fr.mark.$error.number"><i class="fa fa-star-of-life"></i> Điểm không phải là số</span>
+                                        <span class="check" ng-show="fr.mark.$error.required"><i class="fa fa-star-of-life"></i> Bạn chưa điểm</span>
+                                        <span class="check" ng-show="fr.mark.$error.min"><i class="fa fa-star-of-life"></i> Điểm không nhập dưới 0</span>
+                                        <span class="check" ng-show="fr.mark.$error.max"><i class="fa fa-star-of-life"></i> Điểm không nhập trên 10</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 col-sm-9 offset-sm-3 offset-md-7">
+                                <button class="btn btn-dark" ng-click="cancel()">Cancel</button>
+                                <button class="btn btn-outline-success btn_save" ng-click="saveUser()">Save changes</button>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

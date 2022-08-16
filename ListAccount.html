@@ -1,0 +1,154 @@
+<div ng-controller="ctrl_listAccount" class="container">
+    <div ng-show="isLoading" class="loading">
+        <div class="spinner-border text-primary spinner-center" role="status">
+        </div>
+    </div>
+    <div class="" style="margin-top: 60px;">
+        <h2 class="mt-2">Quản trị tài khoản</h2>
+        <div class="row d-flex justify-content-center">
+            <div class="col-10">
+                <form name="fr">
+                    <div class="form-group mt-2 text-start">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <input type="text" placeholder="Full Name" class="form-control" name="fullname" ng-model="accountAdmin.fullname" required> 
+                        </div>
+                        <div ng-show="fr.fullname.$touched &&  fr.fullname.$invalid">
+                            <span class="check"><i class="fa fa-star-of-life"></i> Bạn chưa nhập tên</span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2 text-start">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            <input type="date" placeholder="yyyy-MM-dd" class="form-control" name="birthday" ng-model="accountAdmin.birthday" firebase-date required> 
+                        </div>
+                        <div  ng-show="fr.birthday.$touched &&  fr.birthday.$invalid">
+                            <span class="check"><i class="fa fa-star-of-life"></i> Bạn chưa nhập ngày sinh</span>
+                        </div>
+                    </div> 
+                    <div class="form-group mt-2">
+                        <label for="" class="float-start">Giới tính</label>
+                        <div class="form-check form-check-inline ms-2">
+                            <input type="radio" class="form-check-input" name="gender" id="" value="true" checked ng-model="accountAdmin.gender">
+                            <label class="form-check-label" for="" >
+                                Nam
+                            </label>
+                        </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="gender" id="" value="false"  ng-model="accountAdmin.gender">
+                                <label class="form-check-label" for="">
+                                Nữ
+                            </label>
+                        </div>
+                    </div> 
+                    <div class="form-group mt-2 text-start">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-user-tie"></i></span>
+                            <input type="text" placeholder="Username" class="form-control" name="username" ng-model="accountAdmin.username" required> 
+                        </div>
+                        <div ng-show="fr.username.$touched && fr.username.$invalid">
+                            <span class="check"><i class="fa fa-star-of-life"></i> Bạn chưa nhập tài khoản</span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2 text-start">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            <input type="password" placeholder="Password" class="form-control" name="password" ng-model="accountAdmin.password" required > 
+                        </div>
+                        <div ng-show="fr.password.$touched && fr.password.$invalid">
+                            <span class="check" ng-show="fr.password.$error.required"><i class="fa fa-star-of-life"></i> Bạn chưa nhập mật khẩu</span>
+                            <!-- <span class="check" ng-show="fr.password.$error.minlength"><i class="fa fa-star-of-life"></i> Mật khẩu ngắn quá</span> -->
+                        </div>
+                    </div>
+                    <div class="form-group mt-2 text-start">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-envelope"></i></i></span>
+                            <input type="email" placeholder="Your Email" class="form-control" name="email" ng-model="accountAdmin.email" required> 
+                        </div>
+                        <div ng-show="fr.email.$touched && fr.email.$invalid">
+                            <span class="check" ng-show="fr.email.$error.email"><i class="fa fa-star-of-life"></i> Email không đúng định dạng</span>
+                            <span class="check" ng-show="fr.email.$error.required"><i class="fa fa-star-of-life"></i> Bạn chưa nhập email</span>
+                        </div>
+                    </div> 
+                    <div class="form-group mt-2 text-start">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-donate"></i></span>
+                            <input type="number" class="form-control" name="fee" ng-model="accountAdmin.schoolfee" required min="0" placeholder="school fee">
+                        </div>
+                            <!-- <span class="check" ng-show="fr.fee.$invalid"><i class="fa fa-star-of-life"></i> Bạn chưa học phí</span> -->
+                        <div ng-show="fr.fee.$touched && fr.fee.$invalid">
+                            <span class="check" ng-show="fr.fee.$error.number"><i class="fa fa-star-of-life"></i> Học phí không phải là số</span>
+                            <span class="check" ng-show="fr.fee.$error.required"><i class="fa fa-star-of-life"></i> Bạn chưa học phí</span>
+                            <span class="check" ng-show="fr.fee.$error.min"><i class="fa fa-star-of-life"></i> Học phí không nhập dưới 0</span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2 text-start">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-marker"></i></span>
+                            <input type="number" class="form-control" name="mark" ng-model="accountAdmin.marks" required min="0" max="10" placeholder="marks">
+                        </div>
+                            <!-- <span class="check" ng-show="fr.mark.$invalid"><i class="fa fa-star-of-life"></i> Hãy nhập số</span> -->
+                        <div ng-show="fr.mark.$touched && fr.mark.$invalid">
+                            <span class="mark" ng-show="fr.mark.$error.number"><i class="fa fa-star-of-life"></i> Điểm không phải là số</span>
+                            <span class="check" ng-show="fr.mark.$error.required"><i class="fa fa-star-of-life"></i> Bạn chưa điểm</span>
+                            <span class="check" ng-show="fr.mark.$error.min"><i class="fa fa-star-of-life"></i> Điểm không nhập dưới 0</span>
+                            <span class="check" ng-show="fr.mark.$error.max"><i class="fa fa-star-of-life"></i> Điểm không nhập trên 10</span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="" class="float-start">Quyền</label>
+                        <div class="form-check form-check-inline ms-2">
+                            <input type="radio" class="form-check-input" name="access" id="" value="true" checked ng-model="accountAdmin.access">
+                            <label class="form-check-label" for="" >
+                                Admin
+                            </label>
+                        </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="access" id="" value="false"  ng-model="accountAdmin.access">
+                                <label class="form-check-label" for="">
+                                User
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-dark pe-5 ps-5" ng-click="onSubmitFormAdmin()">Lưu</button>
+                </form>
+            </div>
+        </div>
+        <table class="table table-bordered table-dark mt-4">
+            <tbody>
+                <tr>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>Giới tính</th>
+                    <th>Ngày sinh</th>
+                    <th>Học phí</th>
+                    <th>Điểm</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Quyền</th>
+                    <th colspan="2"></th>
+                </tr>
+            </tbody>
+            <tr ng-repeat="x in listAccount">
+                <td>{{x.fullname}}</td>
+                <td>{{x.email}}</td>
+                <td>
+                    <span ng-if="x.gender == 'true'">Nam</span>
+                    <span ng-if="x.gender == 'false'">Nữ</span>
+                </td>
+                <td>{{x.birthday | date : "yyyy-MM-dd"}}</td>
+                <td>{{x.schoolfee}}</td>
+                <td>{{x.marks}}</td>
+                <td>{{x.username}}</td>
+                <td>{{x.password}}</td>
+                <td>
+                    <span ng-if="x.access == 'true'">Admin</span>
+                    <span ng-if="x.access == 'false'">User</span>
+                </td>
+                <td><button class="btn btn-primary" ng-click="update($index)">Sửa</button></td>
+                <td><button class="btn btn-danger" ng-click="delete($index)">Xóa</button></td>
+            </tr>
+        </table>
+    </div>
+</div>

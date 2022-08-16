@@ -1,0 +1,120 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/ass.css">
+    <link rel="stylesheet" href="css/lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha512-g06pohSHYbSOHKq8tdDGXckE6C23Yt30xlTFDhrO0OcO/bNO2MWXb63oqU/Y23GDMNOon100eGHxZPBnT4QgMw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body ng-app="myApp" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" class="pt-100">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="work_js/index.js"></script>
+ -->
+    <div ng-controller="ctrl_LessonAPI" class="container" style="padding-top: 56px;">
+        <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+              <div class="container">
+                <a class="navbar-brand" href="#ia">FPT Polytechnic</a>
+                <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Trang chủ<span class="visually-hidden">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Lesson.html">Môn học</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="Feedback.html">Góp ý</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Question.html">Hỏi đáp</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text p-0 dropdown">
+                        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i> Vũ Văn Lanh
+                        </a>
+                        <div class="dropdown-menu text-dark">
+                            <a class="dropdown-item text-dark" href="registration.html">Đăng ký</a>
+                            <a class="dropdown-item text-dark" href="Login.html">Đăng nhập</a>
+                            <a class="dropdown-item text-dark" href="ResetPassword.html">Quên mật khẩu</a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item text-dark" href="#">Đăng xuất</a>
+                            <a class="dropdown-item text-dark "href="ChangePassword.html">Đổi mật khẩu</a>
+                            <a class="dropdown-item text-dark" href="UpdateUser.html">Cập nhập tài khoản</a>
+                        </div>
+                    </span>
+                </div>
+          </div>
+        </nav> -->
+        <div ng-show="isLoading" class="loading">
+            <div class="spinner-border text-primary spinner-center" role="status">
+            </div>
+        </div>
+        <nav ng-include="'./layout/menu.html'"></nav>
+        <div class="row mt-4">
+            <article class="col-md-8 col-lg-9">
+                <h2>Bài tập</h2>
+                <hr class="" style="width: 40px; height: 4px; background: 
+                black;">
+                <div class="row mt-4 ps-4 pe-4">
+                    <div class="col-6 col-sm-5 mb-4 transi" ng-repeat = "x in subjects | limitTo : 4 : begin">
+                        <a href="#testAPI/{{x.id}}" ><!-- {{x.Id}} -->
+                            <div class="ho">
+                                <div class="card p-0 lessonCss-card" >
+                                    <img class="card-img-top img-fluid" src="images/logos/ADAV.jpg" alt="">
+                                    <div class="card-body lessonCss-cardBody">
+                                        <h6 class="card-title text-white lessonCss-cardTitle">{{x.Name}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            <div class="row d-flex justify-content-center align-items-center ">
+                <div class="col-12 col-md-10 offset-2 offset-md-1">
+                    <button class="btn btn-outline-dark col-2 ms-1" ng-click="first()">Start</button>
+                    <button class="btn btn-outline-dark col-2 ms-1" ng-click="prev()">Prev</button>
+                    <button class="btn btn-outline-dark col-2 ms-1" ng-click="next()">Next</button>
+                    <button class="btn btn-outline-dark col-2 ms-1" ng-click="last()">Last</button>
+                </div>
+            </div>
+            </article>
+            <aside class="col-md-4 col-lg-3">
+                <div ng-include="'layout/catergoryAPI.html'"></div>
+            </aside>
+        </div>
+    </div>
+    
+    <footer class="bg-dark p-0 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3 text-white text-center">
+                    <p>
+                        <h3>
+                            FPT Polytechnic
+                        </h3>
+                        Designed <b class="text-success">Lanh Chicken</b>
+                    </p>
+                </div>
+                <div class="col-12 col-md-4 offset-md-4 offset-lg-5 pt-3  d-flex justify-content-center ps-0">
+                    <ul style="list-style-type: none;" class="text-white ul-footer">
+                        <li><button class="btn btn-success"><i class="fab fa-twitter"></i></button></li>
+                        <li><button class="btn btn-success"><i class="fab fa-facebook-f"></i></button></i></li>
+                        <li><button class="btn btn-success"><i class="fab fa-instagram"></i></button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>

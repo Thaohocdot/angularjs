@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body ng-app="myApp">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+
+    <div ng-controller="ctrl" class="container">
+        <button class="btn btn-success" ng-click="print()">Printf</button>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+            </tr>
+            <tr ng-repeat="x in studentsa">
+                <td>{{x.username}}</td>
+            </tr>
+        </table>
+
+        <form>
+            <div class="form-group">
+            <div ng-repeat="x in put">
+                <input type="radio" ng-model="x.okla" name="{{x.d}}" value="{{x.number}}" >{{b}}
+            </div>
+                
+                <button class="bnt btn-primary" ng-click="ok()">ok</button> {{okla}}
+            </div>
+        </form>
+       
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("ctrl", function($scope, $http){
+            $scope.students = [];
+            $http.get('db/Students.js').then(function(response){
+                $scope.students = response.data;
+                const setJson = JSON.stringify($scope.students);
+                sessionStorage.setItem("setJson", setJson);
+            });
+            $scope.print = function(){
+                const getJson = JSON.parse(sessionStorage.getItem("setJson"));
+                $scope.studentsa = getJson;
+            }
+            $scope.put = [
+                {
+                    number : 1,
+                    d : "a"
+                },
+                {
+                    number : 2,
+                    d : "a"
+                },
+            ];
+            $scope.ok = function(){
+                $scope.b = $scope.put[1].okla;
+            }
+        });
+    </script>
+</body>
+</html>

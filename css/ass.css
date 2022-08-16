@@ -1,0 +1,33 @@
+.ul-footer>li{
+    float: left;
+    margin-right: 10px; 
+}
+.ul-footer>li>button>i{
+    font-size: 20px; 
+    padding: 5px 0 5px 0;
+}
+.ul-footer>li>button{
+    border-radius: 50px;
+}
+.ul-footer>li>button>.fa-facebook-f{
+    padding: 5px 3px 5px 3px;
+}
+
+/* .ul-footer>li:hover{
+    background: #fff;
+    color: white;
+} */
+
+/* @media only screen and (max-width: 600px) {
+    .ao{
+        display: none;
+    }
+} */
+@media only screen and (max-width: 750px) {
+    header.row {
+      display: none;
+    }
+    .iconUD{
+        margin-top: 56px;
+    }
+}
